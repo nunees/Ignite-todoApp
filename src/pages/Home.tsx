@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { findNodeHandle, StyleSheet, View } from 'react-native';
 
 import { Header } from '../components/Header';
 import { Task, TasksList } from '../components/TasksList';
@@ -20,13 +20,21 @@ export function Home() {
   }
 
   function handleToggleTaskDone(id: number) {
-
+    const newTasks = tasks.map((task) => {
+      if(task.id === id){
+        task = {
+          ...task,
+          done: !task.done,
+        };
+      }
+      return task;
+    })
+    setTasks(newTasks)
   }
 
   function handleRemoveTask(id: number) {
-    setTasks(oldState => oldState.filter(
-      task => task.id !== id
-    ));
+    const updatedTasks = tasks.filter(task => task.id !== id);
+    setTasks(updatedTasks);
   }
 
   return (

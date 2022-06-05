@@ -35,12 +35,12 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
                 style={styles.taskButton}
                 onPress={() => toggleTaskDone(item.id)}
               >
-                <View 
+                <View
                   testID={`marker-${index}`}
-                  style={item.done === true ? styles.taskMarkerDone : styles.taskMarker}
+                  style={item.done ? styles.taskMarkerDone : styles.taskMarker}
                 >
-                  { item.done && (
-                    <Icon 
+                  {item.done && (
+                    <Icon
                       name="check"
                       size={12}
                       color="#FFF"
@@ -48,8 +48,8 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
                   )}
                 </View>
 
-                <Text 
-                  style={item.done === true ? styles.taskTextDone : styles.taskText}
+                <Text
+                  style={item.done ? styles.taskTextDone : styles.taskText}
                 >
                   {item.title}
                 </Text>
